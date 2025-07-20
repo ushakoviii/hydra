@@ -86,9 +86,9 @@ export const ServiceList: React.FC = () => {
         const orderData = await orderRes.json();
         const costs = Array.isArray(orderData.data)
           ? orderData.data.map((item: any) => ({
-              service_id: item.service_id,
-              cost: item.cost
-            }))
+            service_id: item.service_id,
+            cost: item.cost
+          }))
           : [];
         setOrderCosts(costs);
       }
@@ -135,8 +135,9 @@ export const ServiceList: React.FC = () => {
 
   return (
     <StyledMain>
-      <BackgroundVideo />
+
       <StyledLogoWrapper>
+        <BackgroundVideo />
         <Logo />
       </StyledLogoWrapper>
 
@@ -198,10 +199,13 @@ export const ServiceList: React.FC = () => {
                 {bottomButtonText}
               </StyledButton>
             )}
-            <InstallModalButton subscriptionUrl={subscriptionUrl}/>
+            <InstallModalButton subscriptionUrl={subscriptionUrl} />
             <TermsModalButton />
-            <TariffModalButton />
-            <SupportButton />
+            <StyledButtonWrapper>
+              <TariffModalButton />
+              <SupportButton />
+            </StyledButtonWrapper>
+
           </>
         )}
       </StyledMenuWrapper>
@@ -293,3 +297,7 @@ const StyledStatus = styled.div<StyledStatusPropsType>`
   font-size: 12px;
   color: ${(props) => props.color || '#c12f2fff'};
 `;
+const StyledButtonWrapper = styled.div`
+display: flex;
+
+`

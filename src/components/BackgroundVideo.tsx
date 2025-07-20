@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import bgvideo2 from './media/bgvideo2.mp4'
-import bggif from './media/bggif2.gif'
+import bggif from './media/bggif.gif'
 
 export const BackgroundVideo: React.FC = () => {
   return (
@@ -27,8 +27,9 @@ const Video = styled.video`
 
 const StyledImg = styled.img`
 position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
   z-index: -1;
 `
 

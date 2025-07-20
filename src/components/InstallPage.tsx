@@ -97,7 +97,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 // ——— СТИЛИ ———
 
 const StyledTitleSection = styled.h3`
-    font-size: 16px; 
+    font-size: 14px; 
 `;
 
 const StyledLink = styled.a`

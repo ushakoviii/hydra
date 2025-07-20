@@ -19,6 +19,6 @@ font-optical-sizing: auto;
 font-weight: 500;
 font-style: normal;
 overflow: hidden;
-font-size: 14px;
+font-size: 12px;
 }
 `

@@ -134,10 +134,10 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: flex-start;
   overflow-y: auto;
-  animation: ${slideUp} 0.3s ease-out;
+  animation: ${slideUp} 0.5s ease-out;
 
   &.closing {
-    animation: ${slideDown} 0.3s ease-out forwards;
+    animation: ${slideDown} 0.5s ease-out forwards;
   }
 
   ol {
