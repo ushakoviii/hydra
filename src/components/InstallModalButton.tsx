@@ -20,7 +20,7 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
   };
 
   return (
-    <div>
+    <StyledInstallWrapper>
       <StyledButton onClick={() => setShowModal(true)}>
         Установка и настройка
       </StyledButton>
@@ -43,9 +43,12 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
 
       )
       }
-    </div >
+    </StyledInstallWrapper >
   );
 };
+const StyledInstallWrapper = styled.div `
+width: 100%;
+`
 const slideUp = keyframes`
   from {
     transform: translateY(50px);
@@ -69,6 +72,7 @@ const slideDown = keyframes`
 `;
 
 const ModalOverlay = styled.div`
+  
   position: fixed;
   inset: 0;
   z-index: 2;

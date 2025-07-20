@@ -10,7 +10,7 @@ export const SupportButton: React.FC = () => {
   };
 
   return (
-    <StyledButton onClick={handleClick } width='150px;'>
+    <StyledButton onClick={handleClick }>
       Техподдержка
     </StyledButton>
   );

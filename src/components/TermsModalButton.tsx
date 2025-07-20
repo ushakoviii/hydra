@@ -15,7 +15,7 @@ export const TermsModalButton: React.FC = () => {
   };
 
   return (
-    <div>
+    <StyledTermsWrapper>
       <StyledButton onClick={() => setShowModal(true)}>
         Пользовательское соглашение
       </StyledButton>
@@ -99,9 +99,12 @@ export const TermsModalButton: React.FC = () => {
 
       )
       }
-    </div >
+    </StyledTermsWrapper >
   );
 };
+const StyledTermsWrapper = styled.div `
+width: 100%;
+`
 const slideUp = keyframes`
   from {
     transform: translateY(50px);

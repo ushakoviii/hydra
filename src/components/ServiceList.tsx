@@ -265,13 +265,13 @@ const StyledProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0px 0px 5px 0px;
+  padding: 0px 0px 10px 0px;
   border-bottom: 2px solid #747474ff;
 
   div {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -279,12 +279,14 @@ const StyledItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: 5px;
 `;
 
 const StyledDataWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin: 0px 0px;
 `;
 
 type StyledStatusPropsType = {
@@ -292,12 +294,16 @@ type StyledStatusPropsType = {
 };
 
 const StyledStatus = styled.div<StyledStatusPropsType>`
+
   margin-top: 1px;
+  margin-bottom: 0px;
   font-weight: 800;
   font-size: 12px;
   color: ${(props) => props.color || '#c12f2fff'};
 `;
 const StyledButtonWrapper = styled.div`
 display: flex;
+width: 100%;
+gap: 10px;
 
 `

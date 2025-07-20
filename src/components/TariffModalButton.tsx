@@ -15,7 +15,7 @@ export const TariffModalButton: React.FC = () => {
     };
     return (
         <StyledModalWrapper>
-            <StyledButton onClick={() => setShowModal(true)} width='150px;'>
+            <StyledButton onClick={() => setShowModal(true)}>
                 Тариф
             </StyledButton>
 

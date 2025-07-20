@@ -11,9 +11,9 @@ export const StyledButton = styled.button<StyledButtonPropsType>`
   border-radius: 10px;
   background-color: #6adaff0c;
   color: #6ad9ff;
-  width: ${props => props.width || '300px'};
+  width: ${props => props.width || '100%'};
   height: ${props => props.height || '40px'};
-  margin: ${props => props.$margi || '20px 0px 0px 0px'};
+  margin: ${props => props.$margi || '15px 0px 0px 0px'};
   text-transform: uppercase;
   font-family: "Manrope", sans-serif;
   font-weight: 800;
