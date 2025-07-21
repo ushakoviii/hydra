@@ -86,11 +86,11 @@ import { styled } from 'styled-components';
 //   );
 // };
 
-// declare global {
-//   interface Window {  
-//     Telegram: any;
-//   }
-// }
+declare global {
+  interface Window {  
+    Telegram: any;
+  }
+}
 
 export const Auth: React.FC = () => {
   const { isAuthenticated, setSession, setLoading } = useSession();
