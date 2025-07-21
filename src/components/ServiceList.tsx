@@ -7,7 +7,6 @@ import { StyledButton } from './StyledButton';
 import { Logo } from './Logo';
 import { BackgroundVideo } from './BackgroundVideo';
 import { LoadSpinner } from './LoadSpinner';
-import { TermsModalButton } from './TermsModalButton';
 import { InstallModalButton } from './InstallModalButton';
 import { TariffModalButton } from './TariffModalButton';
 
@@ -135,9 +134,9 @@ export const ServiceList: React.FC = () => {
 
   return (
     <StyledMain>
-
+      <BackgroundVideo />
       <StyledLogoWrapper>
-        <BackgroundVideo />
+
         <Logo />
       </StyledLogoWrapper>
 
@@ -200,7 +199,6 @@ export const ServiceList: React.FC = () => {
               </StyledButton>
             )}
             <InstallModalButton subscriptionUrl={subscriptionUrl} />
-            <TermsModalButton />
             <StyledButtonWrapper>
               <TariffModalButton />
               <SupportButton />
