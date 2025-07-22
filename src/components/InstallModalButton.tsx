@@ -132,10 +132,11 @@ position: relative;
 max-height: 95%;
 overflow-y: auto;
 padding: 15px 15px;
-background-color: #000000ff;
+background-color: #1c1c1eb7;
+backdrop-filter: blur(10px);
 width: 100%;
 max-width: 330px;
-border-radius: 10px 10px 0px 0px;
+border-radius: 10px 10px 10px 10px;
 `;
 
 const StyledButtonWrapper = styled.div`

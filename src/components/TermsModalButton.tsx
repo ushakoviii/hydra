@@ -135,7 +135,6 @@ const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
   z-index: 2;
-  background-color: #000000;
   padding: 60px 15px 15px 15px;
   display: flex;
   justify-content: center;
@@ -205,14 +204,15 @@ color: #6d6d6dff;
 text-transform: uppercase;
 font-size: 12px;
 font-weight: 700;
-`
+`;
 const StyledModalWrapper = styled.div`
 position: relative;
 max-height: 95%;
 overflow-y: auto;
 padding: 15px 15px;
-background-color: #000000ff;
+background-color: #1c1c1eb7;
+backdrop-filter: blur(10px);
 width: 100%;
 max-width: 330px;
-border-radius: 10px 10px 0px 0px;
+border-radius: 10px 10px 10px 10px;
 `;
