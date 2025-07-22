@@ -16,9 +16,9 @@ export const TermsModalButton: React.FC = () => {
 
   return (
     <StyledTermsWrapper>
-      <StyledButton onClick={() => setShowModal(true)}>
+      <StyledTermsButton onClick={() => setShowModal(true)}>
         Пользовательское соглашение
-      </StyledButton>
+      </StyledTermsButton>
 
       {showModal && (
 
@@ -26,8 +26,9 @@ export const TermsModalButton: React.FC = () => {
         <ModalOverlay className={isClosing ? 'closing' : ''}>
           <StyledModalWrapper>
             <StyledButtonWrapper>
-              <StyledButton onClick={handleClose} width='28px' height='28px' $margi='0px'>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#63d7fd">
+              <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
+                border='none' radius="50%" bgc="#6f6f6f84">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
                   <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                 </svg>
               </StyledButton>
@@ -88,9 +89,9 @@ export const TermsModalButton: React.FC = () => {
               </ol>
               <li>Реквизиты Исполнителя</li>
               <p>Индивидуальный предприниматель
-                ФИО: Ушаков Иван Иванович<br/>
-                ИНН: 231222977273<br/>
-                ОГРНИП: 318237500069278<br/>
+                ФИО: Ушаков Иван Иванович<br />
+                ИНН: 231222977273<br />
+                ОГРНИП: 318237500069278<br />
                 Телеграм: @ushakov_ii
               </p>
             </ol>
@@ -102,7 +103,10 @@ export const TermsModalButton: React.FC = () => {
     </StyledTermsWrapper >
   );
 };
-const StyledTermsWrapper = styled.div `
+const StyledTermsWrapper = styled.div`
+display: flex;
+justify-content: center;
+
 width: 100%;
 `
 const slideUp = keyframes`
@@ -182,16 +186,33 @@ text-transform: none;
   font-size: 16px;
 `;
 
-const StyledModalWrapper = styled.div`
+const StyledButtonWrapper = styled.div`
 
+  position: sticky;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 `;
 
-const StyledButtonWrapper = styled.div`
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  display: flex;
-  justifu-content: center;
-  align-items: center;
-
+const StyledTermsButton = styled.button`
+margin-top: 15px;
+background-color: transparent;
+color: #ffffff;
+border: none;
+color: #6d6d6dff;
+text-transform: uppercase;
+font-size: 12px;
+font-weight: 700;
+`
+const StyledModalWrapper = styled.div`
+position: relative;
+max-height: 95%;
+overflow-y: auto;
+padding: 15px 15px;
+background-color: #000000ff;
+width: 100%;
+max-width: 330px;
+border-radius: 10px 10px 0px 0px;
 `;

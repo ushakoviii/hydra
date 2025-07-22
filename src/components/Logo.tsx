@@ -5,12 +5,12 @@ const pulse = keyframes`
     transform: translate(-50%, -50%) scale(1);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform: translate(-50%, -50%) scale(1.10);
   }
 `;
 
 const PulsingLogo = styled.svg`
-  animation: ${pulse} 5s ease-in-out infinite;
+  animation: ${pulse} 7s ease-in-out infinite;
   position: absolute;
   top: 50%;
   left: 50%;

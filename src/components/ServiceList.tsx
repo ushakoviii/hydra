@@ -9,6 +9,7 @@ import { BackgroundVideo } from './BackgroundVideo';
 import { LoadSpinner } from './LoadSpinner';
 import { InstallModalButton } from './InstallModalButton';
 import { TariffModalButton } from './TariffModalButton';
+import { TermsModalButton } from './TermsModalButton';
 
 export const ServiceList: React.FC = () => {
   const { isAuthenticated, sessionId } = useSession();
@@ -154,9 +155,9 @@ export const ServiceList: React.FC = () => {
             const status = service.status?.toUpperCase();
             const statusText =
               status === 'BLOCK'
-                ? <StyledStatus>истекла</StyledStatus>
+                ? <StyledStatus>подписка истекла</StyledStatus>
                 : status === 'ACTIVE'
-                  ? <StyledStatus color='#07a12eff'>активна</StyledStatus>
+                  ? <StyledStatus color='#07a12eff'>подписка активна</StyledStatus>
                   : <StyledStatus color='transparent'>неизвестный статус</StyledStatus>;
 
             let tariffLabel = 'Неизвестный тариф';
@@ -202,8 +203,9 @@ export const ServiceList: React.FC = () => {
             <StyledButtonWrapper>
               <TariffModalButton />
               <SupportButton />
-            </StyledButtonWrapper>
 
+            </StyledButtonWrapper>
+            <TermsModalButton />
           </>
         )}
       </StyledMenuWrapper>

@@ -31,13 +31,14 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
         <ModalOverlay className={isClosing ? 'closing' : ''}>
           <StyledModalWrapper>
             <StyledButtonWrapper>
-              <StyledButton onClick={handleClose} width='30px' height='30px' $margi='0px 0px 0px 0px'>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#63d7fd">
+              <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
+                border='none' radius="50%" bgc="#6f6f6f84">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
                   <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                 </svg>
               </StyledButton>
             </StyledButtonWrapper>
-            <InstallPage subscriptionUrl={subscriptionUrl}/>
+            <InstallPage subscriptionUrl={subscriptionUrl} />
           </StyledModalWrapper>
         </ModalOverlay>
 
@@ -46,7 +47,7 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
     </StyledInstallWrapper >
   );
 };
-const StyledInstallWrapper = styled.div `
+const StyledInstallWrapper = styled.div`
 width: 100%;
 `
 const slideUp = keyframes`
@@ -127,13 +128,21 @@ const StyledText = styled.p`
 `;
 
 const StyledModalWrapper = styled.div`
+position: relative;
+max-height: 95%;
+overflow-y: auto;
 padding: 15px 15px;
-background-color: #000000;
+background-color: #000000ff;
 width: 100%;
+max-width: 330px;
 border-radius: 10px 10px 0px 0px;
 `;
 
 const StyledButtonWrapper = styled.div`
+
+  position: sticky;
+  top: 0px;
+  right: 0px;
   display: flex;
   justify-content: flex-end;
   width: 100%;
