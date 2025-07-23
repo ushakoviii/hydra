@@ -24,15 +24,17 @@ export const TermsModalButton: React.FC = () => {
 
 
         <ModalOverlay className={isClosing ? 'closing' : ''}>
+          
+          <StyledButtonWrapper>
+            <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
+              border='none' radius="50%">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+              </svg>
+            </StyledButton>
+          </StyledButtonWrapper>
           <StyledModalWrapper>
-            <StyledButtonWrapper>
-              <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
-                border='none' radius="50%" bgc="#6f6f6f84">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
-                  <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                </svg>
-              </StyledButton>
-            </StyledButtonWrapper>
+
 
             <StyledText>
               Настоящее Пользовательское соглашение (далее — «Соглашение») регулирует отношения между сервисом, предоставляемым Индивидуальным предпринимателем Ушаковым Иваном Ивановичем (далее — «Сервис», «Исполнитель») и физическим лицом, использующим Сервис (далее — «Пользователь»).<br />
@@ -135,11 +137,11 @@ const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
   z-index: 2;
-  padding: 60px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  overflow-y: auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   animation: ${slideUp} 0.5s ease-out;
 
   &.closing {
@@ -186,7 +188,7 @@ text-transform: none;
 `;
 
 const StyledButtonWrapper = styled.div`
-
+  z-index: 4;
   position: sticky;
   top: 0px;
   right: 0px;
@@ -204,6 +206,12 @@ color: #6d6d6dff;
 text-transform: uppercase;
 font-size: 12px;
 font-weight: 700;
+
+&:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #6ad9ff;
+  }
 `;
 const StyledModalWrapper = styled.div`
 position: relative;

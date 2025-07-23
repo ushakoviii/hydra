@@ -4,10 +4,11 @@ import { StyledTitle } from "./StyledTitle";
 import { useSession } from "./SessionContext";
 import { Icon } from "./Icon";
 import { StyledButton } from "./StyledButton";
+import { StyledTitleSection } from "./StyledTitleSection";
 
-const InstallLinkIos = "https://apps.apple.com/us/app/happ-proxy-utility/id6504287215"
+const InstallLinkIos = "https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973"
 const InstallLinkWindows = "https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x86.exe"
-const InstallLinkMacOs = "https://apps.apple.com/us/app/happ-proxy-utility/id6504287215"
+const InstallLinkMacOs = "https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973"
 
 type InstallPageProps = {
     subscriptionUrl?: string | null;
@@ -64,14 +65,14 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                     Откройте страницу в App Store и установите приложение. Запустите его,
                                     в окне разрешения VPN-конфигурации нажмите Allow и введите свой пароль.
                                 </StyledInstallText>
-                                <StyledLink href="https://apps.apple.com/us/app/happ-proxy-utility/id6504287215" target="_blank">
+                                <StyledLink href="{InstallLinkIos}" target="_blank">
                                     Установить
                                 </StyledLink>
                             </StyledTitleWrapper>
 
                         </StyledInstallWrapper>
 
-                        <StyledInstallWrapper>
+                        {/* <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
@@ -85,14 +86,14 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
-                        </StyledInstallWrapper>
+                        </StyledInstallWrapper> */}
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
-                                <StyledTitleSection>Если подписка не добавилась</StyledTitleSection>
+                                <StyledTitleSection>Добавьте подписку</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите на иконку справа от ссылки, и вы скопируете ссылку подписки. Перейдите в приложение Happ и нажмите сверху иконку "+" и выберите из меню "Вставить из буфера обмена"
                                 </StyledInstallText>
@@ -228,7 +229,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         </StyledInstallWrapper>
 
-                        <StyledInstallWrapper>
+                        {/* <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
@@ -242,15 +243,14 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
-
-                        </StyledInstallWrapper>
+                        </StyledInstallWrapper> */}
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
-                                <StyledTitleSection>Если подписка не добавилась</StyledTitleSection>
+                                <StyledTitleSection>Добавьте подписку</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите на иконку справа от ссылки, и вы скопируете ссылку подписки. Перейдите в приложение Happ и нажмите сверху иконку "+" и выберите из меню "Вставить из буфера обмена"
                                 </StyledInstallText>
@@ -380,9 +380,7 @@ max-width: 330px;
 const StyledPsevdo = styled.div`
 
 `
-const StyledTitleSection = styled.h3`
-    font-size: 14px; 
-`;
+
 
 const StyledLink = styled.a`
   display: flex;
@@ -401,6 +399,10 @@ const StyledLink = styled.a`
   font-style: normal;
   font-size: 14px;
   text-decoration: none;
+   &:active {
+    transform: translateY(2px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const DeviceSelect = styled.select`

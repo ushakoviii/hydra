@@ -1,95 +1,214 @@
 import React, { useState } from 'react';
 import { StyledButton } from './StyledButton';
 import { keyframes, styled } from 'styled-components';
+import { StyledTitle } from './StyledTitle';
+import { StyledTitleSection } from './StyledTitleSection';
+import { Icon } from './Icon';
 
 export const TariffModalButton: React.FC = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
-    const handleClose = () => {
-        setIsClosing(true);
-        setTimeout(() => {
-            setShowModal(false);
-            setIsClosing(false);
-        }, 500); // Время закрывающей анимации
-    };
-    return (
-        <StyledModalWrapper>
-            <StyledButton onClick={() => setShowModal(true)}>
-                Тариф
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setShowModal(false);
+      setIsClosing(false);
+    }, 500); // Время закрывающей анимации
+  };
+  return (
+    <StyledTermsWrapper>
+      <StyledButton onClick={() => setShowModal(true)}>
+        Тариф
+      </StyledButton>
+
+      {showModal && (
+
+
+        <ModalOverlay className={isClosing ? 'closing' : ''}>
+
+          <StyledButtonWrapper>
+            <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
+              border='none' radius="50%">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+              </svg>
             </StyledButton>
+          </StyledButtonWrapper>
+          <StyledModalWrapper>
+            <StyledTitle>Тарифы</StyledTitle>
+            <StyledTariffWrapper>
+              <StyledPriceWrapper>
+                <StyledPrice>190 руб.</StyledPrice>
+              </StyledPriceWrapper>
 
-            {showModal && (
-                <ModalOverlay className={isClosing ? 'closing' : ''}>
-                    <div>
-                        <StyledButtonWrapper>
-                            <StyledButton onClick={handleClose} width='30px' height='30px' $margi='0px'>
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#63d7fd">
-                                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                                </svg>
-                            </StyledButton>
-                        </StyledButtonWrapper>
-                        <p>сейчас доступен только тариф 1 месяц</p>
-                        <p>другие тарифы в разработке</p>
+              <StyledTitleSection textAlign="center" margin="0px 0px 15px 0px">1 Месяц</StyledTitleSection>
+              <StyledTariffItemWrapper>
+                <Icon id='time' width='25px' height='25px' fill="#ffffff" />
+                <StyledText>Срок действия тарифа 1 месяц</StyledText>
+              </StyledTariffItemWrapper>
+              <StyledTariffItemWrapper>
+                <Icon id='download' width='25px' height='25px' fill="#ffffff" />
+                <StyledText>Неограниченный трафик</StyledText>
+              </StyledTariffItemWrapper>
+              <StyledTariffItemWrapper>
+                <Icon id='devices' width='25px' height='25px' fill="#ffffff" />
+                <StyledText>Подключайте до 3-х устройств по одной подписке</StyledText>
+              </StyledTariffItemWrapper>
+              <StyledTariffItemWrapper>
+                <Icon id='location' width='25px' height='25px' fill="#ffffff" />
+                <StyledText>Вы получите 3 локации для подключения</StyledText>
+              </StyledTariffItemWrapper>
+            </StyledTariffWrapper>
+          </StyledModalWrapper>
+        </ModalOverlay>
 
-                    </div>
-                </ModalOverlay>
-            )}
-        </StyledModalWrapper>
-    );
+      )
+      }
+    </StyledTermsWrapper >
+  );
 };
+const StyledTermsWrapper = styled.div`
+        display: flex;
+        justify-content: center;
+        
+        width: 100%;
+        `
 const slideUp = keyframes`
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
+          from {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        `;
 
 const slideDown = keyframes`
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-`;
+          from {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+        `;
 
 const ModalOverlay = styled.div`
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  background-color: #000000;
-  padding: 60px 15px 15px 15px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  overflow-y: auto;
-  animation: ${slideUp} 0.5s ease-out;
-
-  &.closing {
-    animation: ${slideDown} 0.5s ease-out forwards;
-  }
-`;
+          position: fixed;
+          inset: 0;
+          z-index: 2;
+          padding: 15px 15px 15px 15px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          animation: ${slideUp} 0.5s ease-out;
+        
+          &.closing {
+            animation: ${slideDown} 0.5s ease-out forwards;
+          }
+        
+          ol {
+          text-transform: none;
+            counter-reset: item;
+            list-style: none;
+            padding-left: 1em;
+            font-weight: 400;
+            font-size: 16px;
+          }
+        
+          li {
+            display: block;
+            position: relative;
+            margin-top: 10px;
+          }
+        
+          li:before {
+            counter-increment: item;
+            content: counters(item, ".") ". ";
+            position: absolute;
+            left: -1.5em;
+            width: 1.5em;
+            text-align: right;
+          }
+        
+          li > ol {
+            counter-reset: item;
+          }
+        
+          li + li {
+            margin-top: 5px;
+          }
+        `;
 
 const StyledText = styled.p`
-  font-weight: 400;
-  font-size: 16px;
-  text-align: justify;
-`;
-
-const StyledModalWrapper = styled.div`
-width: 100%;
-`;
+        text-transform: none;
+          font-weight: 400;
+          font-size: 16px;
+        `;
 
 const StyledButtonWrapper = styled.div`
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: fit-content;
-`;
+          z-index: 4;
+          position: sticky;
+          top: 0px;
+          right: 0px;
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+        `;
+
+const StyledTermsButton = styled.button`
+        margin-top: 15px;
+        background-color: transparent;
+        color: #ffffff;
+        border: none;
+        color: #6d6d6dff;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        
+        &:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: #6ad9ff;
+          }
+        `;
+const StyledModalWrapper = styled.div`
+        position: relative;
+        max-height: 95%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 15px 15px;
+        background-color: #1c1c1eb7;
+        backdrop-filter: blur(10px);
+        width: 100%;
+        max-width: 330px;
+        border-radius: 10px 10px 10px 10px;
+        `;
+const StyledTariffWrapper = styled.div`
+position: relative;
+margin-top: 15px;
+border: 1px solid #63d7fd;
+border-radius: 10px;
+padding: 15px 15px;
+`
+const StyledPrice = styled.h4`
+
+`
+const StyledTariffItemWrapper = styled.div`
+gap: 5px;
+display: flex;
+padding: 5px 0px;
+`
+const StyledPriceWrapper = styled.div `
+position: absolute;
+top: 10px;
+right: 10px;
+display: inline-block;
+padding: 10px 10px;
+background-color: #21a3ceff;
+border-radius: 10px 10px 10px 10px;
+ `

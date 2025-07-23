@@ -29,15 +29,16 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
 
 
         <ModalOverlay className={isClosing ? 'closing' : ''}>
+          <StyledButtonWrapper>
+            <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
+              border='none' radius="50%" >
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+              </svg>
+            </StyledButton>
+          </StyledButtonWrapper>
           <StyledModalWrapper>
-            <StyledButtonWrapper>
-              <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
-                border='none' radius="50%" bgc="#6f6f6f84">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
-                  <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                </svg>
-              </StyledButton>
-            </StyledButtonWrapper>
+
             <InstallPage subscriptionUrl={subscriptionUrl} />
           </StyledModalWrapper>
         </ModalOverlay>
@@ -77,11 +78,11 @@ const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
   z-index: 2;
-  padding: 0px 15px 15px 15px;
+  padding: 15px 15px 15px 15px;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  overflow-y: auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   animation: ${slideUp} 0.5s ease-out;
 
   &.closing {
@@ -131,6 +132,7 @@ const StyledModalWrapper = styled.div`
 position: relative;
 max-height: 95%;
 overflow-y: auto;
+
 padding: 15px 15px;
 background-color: #1c1c1eb7;
 backdrop-filter: blur(10px);
@@ -140,10 +142,8 @@ border-radius: 10px 10px 10px 10px;
 `;
 
 const StyledButtonWrapper = styled.div`
-
-  position: sticky;
-  top: 0px;
-  right: 0px;
+  margin: 0px 0px 5px 0px;
+  z-index: 5;
   display: flex;
   justify-content: flex-end;
   width: 100%;

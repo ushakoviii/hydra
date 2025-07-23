@@ -23,4 +23,8 @@ export const StyledButton = styled.button<StyledButtonPropsType>`
   font-style: normal;
   font-size: 14px;
   
+  &:active {
+    transform: translateY(2px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
 `;
