@@ -13,7 +13,7 @@ const App: React.FC = () => {
       const theme = tg.themeParams;
 
       // Устанавливаем цвета из темы
-      tg.setHeaderColor(theme?.header_bg_color || '#000000ff');
+      tg.setHeaderColor(theme?.header_bg_color || '#000000');
     }
   }, []);
 
