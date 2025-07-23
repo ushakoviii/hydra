@@ -42,7 +42,7 @@ export const TariffModalButton: React.FC = () => {
                 <StyledPrice>190 руб.</StyledPrice>
               </StyledPriceWrapper>
 
-              <StyledTitleSection textAlign="center" margin="0px 0px 15px 0px">1 Месяц</StyledTitleSection>
+              <StyledTitleSection textAlign="center" margin="15px 0px 15px 0px">1 Месяц</StyledTitleSection>
               <StyledTariffItemWrapper>
                 <Icon id='time' width='25px' height='25px' fill="#ffffff" />
                 <StyledText>Срок действия тарифа 1 месяц</StyledText>
@@ -196,6 +196,7 @@ border-radius: 10px;
 padding: 15px 15px;
 `
 const StyledPrice = styled.h4`
+font-size: 14px;
 
 `
 const StyledTariffItemWrapper = styled.div`

@@ -65,7 +65,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                     Откройте страницу в App Store и установите приложение. Запустите его,
                                     в окне разрешения VPN-конфигурации нажмите Allow и введите свой пароль.
                                 </StyledInstallText>
-                                <StyledLink href="{InstallLinkIos}" target="_blank">
+                                <StyledLink href={InstallLinkIos} target="_blank">
                                     Установить
                                 </StyledLink>
                             </StyledTitleWrapper>
@@ -329,7 +329,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                                 <StyledTitleSection>Скопируйте и добавьте подписку</StyledTitleSection>
                                 <StyledInstallText>
-                                    Нажмите кнопку ниже и скопируется подписка. Далее перейдите в приложение HAPP и вставьте подписку, после чего нажмите "Поехалиы"
+                                    Нажмите кнопку ниже и скопируется подписка. Далее перейдите в приложение HAPP и вставьте подписку, после чего нажмите "Поехали"
                                 </StyledInstallText>
                                 <StyledScrollWrapper>
                                     <StyledSkroll>
