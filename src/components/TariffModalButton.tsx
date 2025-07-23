@@ -178,7 +178,7 @@ const StyledTermsButton = styled.button`
         `;
 const StyledModalWrapper = styled.div`
         position: relative;
-        max-height: 95%;
+        max-height: 80%;
         height: 100%;
         overflow-y: auto;
         padding: 15px 15px;

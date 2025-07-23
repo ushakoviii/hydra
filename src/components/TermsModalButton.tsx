@@ -215,7 +215,7 @@ font-weight: 700;
 `;
 const StyledModalWrapper = styled.div`
 position: relative;
-max-height: 95%;
+max-height: 80%;
 overflow-y: auto;
 padding: 15px 15px;
 background-color: #1c1c1eb7;
