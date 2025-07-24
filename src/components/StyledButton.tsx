@@ -7,9 +7,11 @@ type StyledButtonPropsType = {
   border?: string;
   radius?: string;
   bgc?: string;
+  shadow?: string;
 }
 export const StyledButton = styled.button<StyledButtonPropsType>`
   cursor: pointer;
+  box-shadow: ${props => props.shadow || 'inset 0 0 5px 1px #6ad9ff;'};
   border: ${props => props.border || '1px solid #63d7fd'};
   border-radius: ${props => props.radius || '10px;'};
   background-color: ${props => props.bgc || '#6adaff0c'};
@@ -25,6 +27,6 @@ export const StyledButton = styled.button<StyledButtonPropsType>`
   
   &:active {
     transform: translateY(2px);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    
   }
 `;

@@ -30,14 +30,14 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
 
         <ModalOverlay className={isClosing ? 'closing' : ''}>
           <StyledButtonWrapper>
-            <StyledButton onClick={handleClose} width='24px' height='24px' $margi='0px 0px 0px 0px'
+            <StyledButton onClick={handleClose} shadow="none" width='24px' height='24px' $margi='0px 0px 0px 0px'
               border='none' radius="50%" >
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
                 <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
               </svg>
             </StyledButton>
           </StyledButtonWrapper>
-          <StyledModalWrapper>
+          <StyledModalWrapper className={isClosing ? 'closing' : ''}>
 
             <InstallPage subscriptionUrl={subscriptionUrl} />
           </StyledModalWrapper>
@@ -51,27 +51,7 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
 const StyledInstallWrapper = styled.div`
 width: 100%;
 `
-const slideUp = keyframes`
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
 
-const slideDown = keyframes`
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-`;
 
 const ModalOverlay = styled.div`
   
@@ -83,10 +63,7 @@ const ModalOverlay = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  animation: ${slideUp} 0.5s ease-out;
-
-  &.closing {
-    animation: ${slideDown} 0.5s ease-out forwards;
+ 
   }
 
   ol {
@@ -122,24 +99,48 @@ const ModalOverlay = styled.div`
   }
 `;
 
-const StyledText = styled.p`
-  font-weight: 400;
-  font-size: 16px;
-  text-align: justify;
+const blurFadeIn = keyframes`
+  0% {
+    backdrop-filter: blur(0px);
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    backdrop-filter: blur(10px);
+    transform: translateY(0px);
+    opacity: 1;
+  }
 `;
 
+const blurFadeOut = keyframes`
+  0% {
+    backdrop-filter: blur(10px);
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    backdrop-filter: blur(0px);
+    transform: translateY(50px);
+    opacity: 0;
+  }
+`;
 const StyledModalWrapper = styled.div`
-position: relative;
-max-height: 80%;
-overflow-y: auto;
+        background-color: #1c1c1eb7;
+        position: relative;
+        max-height: 80%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 15px 15px;
+        width: 100%;
+        max-width: 330px;
+        border-radius: 10px 10px 10px 10px;
 
-padding: 15px 15px;
-background-color: #1c1c1eb7;
-backdrop-filter: blur(10px);
-width: 100%;
-max-width: 330px;
-border-radius: 10px 10px 10px 10px;
-`;
+        animation: ${blurFadeIn} 0.5s ease-out forwards;
+
+        &.closing {
+        animation: ${blurFadeOut} 0.5s ease-out forwards;
+        }
+        `;
 
 const StyledButtonWrapper = styled.div`
   margin: 0px 0px 5px 0px;
@@ -147,4 +148,5 @@ const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  
 `;

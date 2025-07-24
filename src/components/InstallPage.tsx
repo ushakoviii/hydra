@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { styled } from "styled-components";
+import { keyframes, styled } from "styled-components";
 import { StyledTitle } from "./StyledTitle";
 import { useSession } from "./SessionContext";
 import { Icon } from "./Icon";
@@ -13,10 +13,14 @@ const InstallLinkMacOs = "https://apps.apple.com/ru/app/happ-proxy-utility-plus/
 type InstallPageProps = {
     subscriptionUrl?: string | null;
 };
+
+
+
 export function InstallPage({ subscriptionUrl }: InstallPageProps) {
     const { sessionId } = useSession();
     const [error, setError] = useState<string | null>(null);
     const [deviceType, setDeviceType] = useState<string>("unknown");
+    const [copiedBlock, setCopiedBlock] = useState<string | null>(null);
 
     useEffect(() => {
         const userAgent = window.navigator.userAgent.toLowerCase();
@@ -32,6 +36,14 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
             setDeviceType("unknown");
         }
     }, []);
+
+    const handleCopy = (text: string | undefined | null, block: string) => {
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(() => {
+            setCopiedBlock(block);
+            setTimeout(() => setCopiedBlock(null), 2000);
+        });
+    };
     return (
         <div>
             <StyledTitle>Установка и настройка</StyledTitle>
@@ -72,7 +84,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         </StyledInstallWrapper>
 
-                        {/* <StyledInstallWrapper>
+                        <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
@@ -82,18 +94,18 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://import/${subscriptionUrl}`} target="_blank">
+                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
-                        </StyledInstallWrapper> */}
+                        </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
-                                <StyledTitleSection>Добавьте подписку</StyledTitleSection>
+                                <StyledTitleSection>Если подписка не добавилась</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите на иконку справа от ссылки, и вы скопируете ссылку подписки. Перейдите в приложение Happ и нажмите сверху иконку "+" и выберите из меню "Вставить из буфера обмена"
                                 </StyledInstallText>
@@ -103,15 +115,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                             {subscriptionUrl}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" width="25px" height="25px" $margi="0px" onClick={() => {
-                                        if (subscriptionUrl) {
-                                            navigator.clipboard.writeText(subscriptionUrl)
-                                        }
-                                    }}>
+                                    <StyledButton border="none" width="25px" shadow="none" height="25px" $margi="0px"
+                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                    >
                                         <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
                                     </StyledButton>
 
-
+                                    {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
                                 </StyledScrollWrapper>
 
                             </StyledTitleWrapper>
@@ -150,28 +160,39 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                             {InstallLinkWindows}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" width="25px" height="25px" $margi="0px" onClick={() => {
-                                        if (InstallLinkWindows) {
-                                            navigator.clipboard.writeText(InstallLinkWindows)
-                                        }
-                                    }}>
+                                    <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
+                                        onClick={() => handleCopy(InstallLinkWindows, 'windows')}
+                                    >
                                         <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
                                     </StyledButton>
 
-
+                                    {copiedBlock === 'windows' && <CopyMessage>ссылка скопирована!</CopyMessage>}
                                 </StyledScrollWrapper>
 
                             </StyledTitleWrapper>
 
                         </StyledInstallWrapper>
-
+                        <StyledInstallWrapper>
+                            <StyledIconWrapper>
+                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                            </StyledIconWrapper>
+                            <StyledTitleWrapper>
+                                <StyledTitleSection>Добавьте подписку</StyledTitleSection>
+                                <StyledInstallText>
+                                    Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
+                                </StyledInstallText>
+                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
+                                    Добавить подписку
+                                </StyledLink>
+                            </StyledTitleWrapper>
+                        </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
-                                <StyledTitleSection>Скопируйте и добавьте подписку</StyledTitleSection>
+                                <StyledTitleSection>Если подписка не добавилась</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите кнопку ниже и скопируется подписка. Далее перейдите в приложение HAPP и вставьте подписку, после чего нажмите "Поехалиы"
                                 </StyledInstallText>
@@ -181,15 +202,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                             {subscriptionUrl}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" width="25px" height="25px" $margi="0px" onClick={() => {
-                                        if (subscriptionUrl) {
-                                            navigator.clipboard.writeText(subscriptionUrl)
-                                        }
-                                    }}>
+                                    <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
+                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                    >
                                         <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
                                     </StyledButton>
 
-
+                                    {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
                                 </StyledScrollWrapper>
                             </StyledTitleWrapper>
                         </StyledInstallWrapper>
@@ -229,28 +248,27 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         </StyledInstallWrapper>
 
-                        {/* <StyledInstallWrapper>
+                        <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
-
                                 <StyledTitleSection>Добавьте подписку</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://import/${subscriptionUrl}`} target="_blank">
+                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
-                        </StyledInstallWrapper> */}
+                        </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
-                                <StyledTitleSection>Добавьте подписку</StyledTitleSection>
+                                <StyledTitleSection>Если подписка не добавилась</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите на иконку справа от ссылки, и вы скопируете ссылку подписки. Перейдите в приложение Happ и нажмите сверху иконку "+" и выберите из меню "Вставить из буфера обмена"
                                 </StyledInstallText>
@@ -260,14 +278,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                             {subscriptionUrl}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" width="25px" height="25px" $margi="0px" onClick={() => {
-                                        if (subscriptionUrl) {
-                                            navigator.clipboard.writeText(subscriptionUrl)
-                                        }
-                                    }}>
+                                    <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
+                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                    >
                                         <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
                                     </StyledButton>
 
+                                    {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
 
                                 </StyledScrollWrapper>
 
@@ -306,28 +323,40 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                             {InstallLinkMacOs}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" width="25px" height="25px" $margi="0px" onClick={() => {
-                                        if (InstallLinkMacOs) {
-                                            navigator.clipboard.writeText(InstallLinkMacOs)
-                                        }
-                                    }}>
+                                    <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
+                                        onClick={() => handleCopy(InstallLinkMacOs, 'windows')}
+                                    >
                                         <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
                                     </StyledButton>
 
+                                    {copiedBlock === 'windows' && <CopyMessage>ссылка скопирована!</CopyMessage>}
 
                                 </StyledScrollWrapper>
 
                             </StyledTitleWrapper>
 
                         </StyledInstallWrapper>
-
+                        <StyledInstallWrapper>
+                            <StyledIconWrapper>
+                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                            </StyledIconWrapper>
+                            <StyledTitleWrapper>
+                                <StyledTitleSection>Добавьте подписку</StyledTitleSection>
+                                <StyledInstallText>
+                                    Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
+                                </StyledInstallText>
+                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
+                                    Добавить подписку
+                                </StyledLink>
+                            </StyledTitleWrapper>
+                        </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
                                 <Icon id='import' width='25px' height='25px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
-                                <StyledTitleSection>Скопируйте и добавьте подписку</StyledTitleSection>
+                                <StyledTitleSection>Если подписка не добавилась</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите кнопку ниже и скопируется подписка. Далее перейдите в приложение HAPP и вставьте подписку, после чего нажмите "Поехали"
                                 </StyledInstallText>
@@ -337,14 +366,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                             {subscriptionUrl}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" width="25px" height="25px" $margi="0px" onClick={() => {
-                                        if (subscriptionUrl) {
-                                            navigator.clipboard.writeText(subscriptionUrl)
-                                        }
-                                    }}>
+                                    <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
+                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                    >
                                         <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
                                     </StyledButton>
 
+                                    {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
 
                                 </StyledScrollWrapper>
                             </StyledTitleWrapper>
@@ -383,6 +411,7 @@ const StyledPsevdo = styled.div`
 
 
 const StyledLink = styled.a`
+    box-shadow: inset 0 0 5px 1px #6ad9ff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -439,6 +468,7 @@ const StyledTitleWrapper = styled.div`
 `
 const StyledInstallText = styled.p`
 margin: 5px 0px 10px 0px;
+font-size: 12px;
 font-weight: 700;
 text-transform: none;
 color: #8b949e;
@@ -482,15 +512,17 @@ const StyledSkroll = styled.div`
     display: none;
   }
 `
+
 const StyledLinkScroll = styled.p`
   display: inline-block;
   flex-shrink: 0;
   padding: 0 10px;
   color: #6ad9ff;
   white-space: nowrap;
-  margin: 0; 
+  margin: 0;
 `
 const StyledScrollWrapper = styled.div`
+position: relative;
 display: flex;
 align-items: center;
 width: 100%;
@@ -505,4 +537,22 @@ align-items: center;
 justify-content: center;
 border: 2px solid #63d7fd;
 `
+const CopyMessage = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
 
+font-size: 10px;
+text-transform: none;
+
+  margin-top: 5px;
+  color: #ffffffff;
+  font-weight: 500;
+  user-select: none;
+
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+`;
