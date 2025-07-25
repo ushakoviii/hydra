@@ -3,14 +3,13 @@ import { useSession } from './SessionContext';
 import { OrderButton } from './OrderButton';
 import { SupportButton } from './SupportButton';
 import { styled } from 'styled-components';
-import { StyledButton } from './StyledButton';
 import { Logo } from './Logo';
-import { BackgroundVideo } from './BackgroundVideo';
 import { LoadSpinner } from './LoadSpinner';
 import { InstallModalButton } from './InstallModalButton';
 import { TariffModalButton } from './TariffModalButton';
 import { TermsModalButton } from './TermsModalButton';
 import { Theme } from './Theme';
+import { PayButton } from './PayButton';
 
 export const ServiceList: React.FC = () => {
   const { isAuthenticated, sessionId } = useSession();
@@ -25,6 +24,7 @@ export const ServiceList: React.FC = () => {
   const [next, setNext] = useState<number | null>(null);
   const [orderCosts, setOrderCosts] = useState<{ service_id: number; cost: number }[]>([]);
   const [reloadFlag, setReloadFlag] = useState<boolean>(false);
+  const [PayLink, setPayLink] = useState<string | null>(null);
 
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
@@ -95,6 +95,15 @@ export const ServiceList: React.FC = () => {
           : [];
         setOrderCosts(costs);
       }
+      //  5. Загрузка платёжной системы и сохранение PayLink
+      const payLinkRes = await fetch('https://shmclient.hydra-service.online/shm/v1/user/pay/paysystems', { headers });
+      if (payLinkRes.ok) {
+        const payLinkData = await payLinkRes.json();
+        const firstPaySystem = payLinkData.data?.[0];
+        if (firstPaySystem?.shm_url) {
+          setPayLink(firstPaySystem.shm_url);
+        }
+      }
 
     } catch (err: any) {
       setError(err.message);
@@ -127,13 +136,25 @@ export const ServiceList: React.FC = () => {
   const firstService = services.length > 0 ? services[0] : null;
   const firstServiceStatus = firstService?.status?.toUpperCase();
 
-  let bottomButtonText = '';
-  if (itemsCount === 0) {
-    bottomButtonText = 'Подключиться';
-  } else if (firstServiceStatus === 'BLOCK') {
-    bottomButtonText = 'Продлить 190 руб.';
+  let payButtonText = '';
+  if (firstServiceStatus === 'BLOCK') {
+    payButtonText = 'Продлить';
   } else {
-    bottomButtonText = 'Пополнить 190 руб.';
+    payButtonText = 'Пополнить';
+  }
+
+  let tariffCost = '0';
+  if (next === 12) {
+    tariffCost = '249';
+  } else if (next === 14) {
+    tariffCost = '599';
+  }
+
+  let tariffLabel = 'Неизвестный тариф';
+  if (next === 12) {
+    tariffLabel = '1 месяц';
+  } else if (next === 14) {
+    tariffLabel = '3 месяца';
   }
 
   return (
@@ -163,12 +184,9 @@ export const ServiceList: React.FC = () => {
                   ? <StyledStatus color='#07a12eff'>подписка активна</StyledStatus>
                   : <StyledStatus color='transparent'>неизвестный статус</StyledStatus>;
 
-            let tariffLabel = 'Неизвестный тариф';
-            if (service.service_id === 12) {
-              tariffLabel = 'месяц';
-            } else if (service.service_id === 13) {
-              tariffLabel = 'Тестовый';
-            }
+
+
+
 
             return (
               <StyledProfileWrapper key={service.user_service_id}>
@@ -197,17 +215,11 @@ export const ServiceList: React.FC = () => {
 
         {itemsCount !== 0 && (
           <>
-            {bottomButtonText && (
-              <StyledButton bgc={Theme.colors.accentColor}
-                onClick={() => console.log('Кнопка внизу')}>
-                {bottomButtonText}
-              </StyledButton>
-            )}
+            <PayButton text={payButtonText} link={PayLink} cost={tariffCost} />
             <InstallModalButton happLink={happLink} />
             <StyledButtonWrapper>
               <TariffModalButton />
               <SupportButton />
-
             </StyledButtonWrapper>
             <TermsModalButton />
           </>
@@ -249,6 +261,7 @@ const StyledMain = styled.main`
 `;
 
 const StyledMenuWrapper = styled.div`
+  min-height: 360px;
   width: 330px;
   background-color: ${Theme.colors.secondaryBgColor};
   display: flex;

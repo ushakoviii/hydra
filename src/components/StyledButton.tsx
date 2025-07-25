@@ -11,6 +11,7 @@ type StyledButtonPropsType = {
   shadow?: string;
 }
 export const StyledButton = styled.button<StyledButtonPropsType>`
+  position: relative;
   cursor: pointer;
   box-shadow: ${props => props.shadow || 'none'};
   border: ${props => props.border || `1px solid ${Theme.colors.accentColor}`};

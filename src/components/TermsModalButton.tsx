@@ -27,8 +27,9 @@ export const TermsModalButton: React.FC = () => {
         <ModalOverlay >
 
           <StyledButtonWrapper>
-            <StyledButton onClick={handleClose} shadow="none" width='24px' height='24px' $margi='0px 0px 0px 0px'
-              border='none' radius="50%">
+            <StyledButton onClick={handleClose} width='30px' height='30px' $margi='0px 0px 0px 0px' radius="50%"
+              bgc={Theme.colors.secondaryBgColor}
+              border='none'>
               <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffffff">
                 <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
               </svg>
@@ -187,7 +188,7 @@ const StyledButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  
+  max-width: 330px;
 `;
 
 const StyledTermsButton = styled.button`

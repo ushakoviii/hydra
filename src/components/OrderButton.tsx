@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useSession } from './SessionContext';
 import { StyledButton } from './StyledButton';
+import { styled } from 'styled-components';
+import { Theme } from './Theme';
 
 interface OrderButtonProps {
   onOrderSuccess: () => void;
@@ -39,8 +41,8 @@ export const OrderButton: React.FC<OrderButtonProps> = ({ onOrderSuccess }) => {
   };
 
   return (
-    <div className="mt-4">
-      <StyledButton
+    <StyledOrderButtonWrapper>
+      <StyledButton bgc={Theme.colors.accentColor}
         onClick={handleOrder}
         disabled={loading}
         
@@ -48,6 +50,9 @@ export const OrderButton: React.FC<OrderButtonProps> = ({ onOrderSuccess }) => {
         {loading ? 'Подключение...' : 'Подключиться'}
       </StyledButton>
       {error && <div>Ошибка: {error}</div>}
-    </div>
+    </StyledOrderButtonWrapper>
   );
 };
+const StyledOrderButtonWrapper = styled.div `
+width: 100%;
+`
