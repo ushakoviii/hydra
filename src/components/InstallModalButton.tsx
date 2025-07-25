@@ -5,9 +5,9 @@ import { InstallPage } from './InstallPage';
 
 
 type InstallModalButtonProps = {
-  subscriptionUrl?: string | null;
+  happLink?: string | null;
 };
-export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscriptionUrl }) => {
+export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ happLink }) => {
   const [showModal, setShowModal] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -39,7 +39,7 @@ export const InstallModalButton: React.FC<InstallModalButtonProps> = ({ subscrip
           </StyledButtonWrapper>
           <StyledModalWrapper className={isClosing ? 'closing' : ''}>
 
-            <InstallPage subscriptionUrl={subscriptionUrl} />
+            <InstallPage happLink={happLink} />
           </StyledModalWrapper>
         </ModalOverlay>
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { SessionProvider } from './components/SessionContext';
 import { Auth } from './components/Auth';
 import { ServiceList } from './components/ServiceList';
+import { Theme } from './components/Theme';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const App: React.FC = () => {
       const theme = tg.themeParams;
 
       // Устанавливаем цвета из темы
-      tg.setHeaderColor('#000000');
+      tg.setHeaderColor(Theme.colors.mainBgColor);
     }
   }, []);
 

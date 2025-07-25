@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { Theme } from "./Theme";
 
 export const GlobalStyles = createGlobalStyle`
 *, 
@@ -11,12 +12,12 @@ box-sizing: border-box;
 
 body {
 max-width: 100wv;
-text-transform: uppercase;
-color: white;
-background-color: #000000ff;
+
+color: ${Theme.colors.mainFontColor};
+background-color: ${Theme.colors.mainBgColor};
 font-family: "Manrope", sans-serif;
 font-optical-sizing: auto;
-font-weight: 500;
+font-weight: 400;
 font-style: normal;
 overflow: hidden;
 font-size: 12px;

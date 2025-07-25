@@ -4,6 +4,7 @@ import { keyframes, styled } from 'styled-components';
 import { StyledTitle } from './StyledTitle';
 import { StyledTitleSection } from './StyledTitleSection';
 import { Icon } from './Icon';
+import { Theme } from './Theme';
 
 export const TariffModalButton: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -124,7 +125,7 @@ const ModalOverlay = styled.div`
 
 const StyledText = styled.p`
   font-size: 12px;
-  xtext-transform: none;
+  text-transform: none;
   font-weight: 400;
 `;
 
@@ -142,9 +143,8 @@ const StyledButtonWrapper = styled.div`
 const StyledTermsButton = styled.button`
         margin-top: 15px;
         background-color: transparent;
-        color: #ffffff;
         border: none;
-        color: #6d6d6dff;
+        color: #999999ff;
         text-transform: uppercase;
         font-size: 12px;
         font-weight: 700;
@@ -152,7 +152,7 @@ const StyledTermsButton = styled.button`
         &:active {
             transform: translateY(1px);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-            color: #6ad9ff;
+            color: ${Theme.colors.accentColor};
           }
         `;
 const blurFadeIn = keyframes`
@@ -204,7 +204,7 @@ const StyledModalWrapper = styled.div`
 const StyledTariffWrapper = styled.div`
 position: relative;
 margin-top: 15px;
-border: 1px solid #63d7fd;
+border: 1px solid ${Theme.colors.accentColor};
 border-radius: 10px;
 padding: 15px 15px;
 `
@@ -223,7 +223,7 @@ top: 10px;
 right: 10px;
 display: inline-block;
 padding: 10px 10px;
-background-color: #21a3ceff;
+background-color: ${Theme.colors.accentColor};
 border-radius: 10px 10px 10px 10px;
  `
 

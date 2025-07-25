@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyledButton } from './StyledButton';
 import { keyframes, styled } from 'styled-components';
+import { Theme } from './Theme';
 
 export const TermsModalButton: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -190,12 +191,11 @@ const StyledButtonWrapper = styled.div`
 `;
 
 const StyledTermsButton = styled.button`
+text-transform: none;
 margin-top: 15px;
 background-color: transparent;
-color: #ffffff;
 border: none;
-color: #6d6d6dff;
-text-transform: uppercase;
+color: ${Theme.colors.secondaryFontColor};
 font-size: 12px;
 font-weight: 700;
 cursor: pointer;
@@ -203,7 +203,7 @@ cursor: pointer;
 &:active {
     transform: translateY(1px);
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-    color: #6ad9ff;
+    color: ${Theme.colors.accentColor};
   }
 `;
 const blurFadeIn = keyframes`

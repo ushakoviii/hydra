@@ -5,18 +5,19 @@ import { useSession } from "./SessionContext";
 import { Icon } from "./Icon";
 import { StyledButton } from "./StyledButton";
 import { StyledTitleSection } from "./StyledTitleSection";
+import { Theme } from "./Theme";
 
 const InstallLinkIos = "https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973"
 const InstallLinkWindows = "https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x86.exe"
 const InstallLinkMacOs = "https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973"
 
 type InstallPageProps = {
-    subscriptionUrl?: string | null;
+    happLink?: string | null;
 };
 
 
 
-export function InstallPage({ subscriptionUrl }: InstallPageProps) {
+export function InstallPage({ happLink }: InstallPageProps) {
     const { sessionId } = useSession();
     const [error, setError] = useState<string | null>(null);
     const [deviceType, setDeviceType] = useState<string>("unknown");
@@ -51,7 +52,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                 <StyledDeviceWrapper>
                     <StyledDeviceIconWrapper>
                         <StyledIconWrapper>
-                            <Icon id='device' width='25px' height='25px' fill="#ffffff" />
+                            <Icon id='device' width='20px' height='20px' fill="#ffffff" />
 
                         </StyledIconWrapper>
                         <StyledTitleSection>Ваше устройство</StyledTitleSection>
@@ -68,7 +69,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                     <div>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='download' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='download' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -86,7 +87,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
@@ -94,14 +95,14 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
+                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
                         </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
@@ -112,13 +113,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                 <StyledScrollWrapper>
                                     <StyledSkroll>
                                         <StyledLinkScroll>
-                                            {subscriptionUrl}
+                                            {happLink}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" width="25px" shadow="none" height="25px" $margi="0px"
-                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                    <StyledButton border="none" width="20px" shadow="none" height="20px" $margi="0px"
+                                        onClick={() => handleCopy(happLink, 'subscription')}
                                     >
-                                        <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
+                                        <Icon id='copy' width='20px' height='20px' fill={Theme.colors.accentColor} />
                                     </StyledButton>
 
                                     {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
@@ -129,7 +130,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='location' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='location' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -146,7 +147,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                     <div>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='download' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='download' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -160,10 +161,10 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                             {InstallLinkWindows}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
-                                    <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
+                                    <StyledButton border="none" shadow="none" width="20px" height="20px" $margi="0px"
                                         onClick={() => handleCopy(InstallLinkWindows, 'windows')}
                                     >
-                                        <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
+                                        <Icon id='copy' width='25px' height='25px' fill={Theme.colors.accentColor} />
                                     </StyledButton>
 
                                     {copiedBlock === 'windows' && <CopyMessage>ссылка скопирована!</CopyMessage>}
@@ -174,21 +175,21 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                         </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
                                 <StyledTitleSection>Добавьте подписку</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
+                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
                         </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
@@ -199,13 +200,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                 <StyledScrollWrapper>
                                     <StyledSkroll>
                                         <StyledLinkScroll>
-                                            {subscriptionUrl}
+                                            {happLink}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
                                     <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
-                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                        onClick={() => handleCopy(happLink, 'subscription')}
                                     >
-                                        <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
+                                        <Icon id='copy' width='20px' height='20px' fill={Theme.colors.accentColor} />
                                     </StyledButton>
 
                                     {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
@@ -215,7 +216,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='location' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='location' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -232,7 +233,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                     <div>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='download' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='download' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -250,21 +251,21 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
                                 <StyledTitleSection>Добавьте подписку</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
+                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
                         </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
@@ -275,13 +276,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                 <StyledScrollWrapper>
                                     <StyledSkroll>
                                         <StyledLinkScroll>
-                                            {subscriptionUrl}
+                                            {happLink}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
                                     <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
-                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                        onClick={() => handleCopy(happLink, 'subscription')}
                                     >
-                                        <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
+                                        <Icon id='copy' width='20px' height='20px' fill={Theme.colors.accentColor} />
                                     </StyledButton>
 
                                     {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
@@ -292,7 +293,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                         </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='location' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='location' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -309,7 +310,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                     <div>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='download' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='download' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -326,7 +327,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                     <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
                                         onClick={() => handleCopy(InstallLinkMacOs, 'windows')}
                                     >
-                                        <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
+                                        <Icon id='copy' width='20px' height='20px' fill={Theme.colors.accentColor} />
                                     </StyledButton>
 
                                     {copiedBlock === 'windows' && <CopyMessage>ссылка скопирована!</CopyMessage>}
@@ -338,21 +339,21 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                         </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
                                 <StyledTitleSection>Добавьте подписку</StyledTitleSection>
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${subscriptionUrl}`} target="_blank">
+                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
                         </StyledInstallWrapper>
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='import' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='import' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
                             <StyledTitleWrapper>
 
@@ -363,13 +364,13 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
                                 <StyledScrollWrapper>
                                     <StyledSkroll>
                                         <StyledLinkScroll>
-                                            {subscriptionUrl}
+                                            {happLink}
                                         </StyledLinkScroll>
                                     </StyledSkroll>
                                     <StyledButton border="none" shadow="none" width="25px" height="25px" $margi="0px"
-                                        onClick={() => handleCopy(subscriptionUrl, 'subscription')}
+                                        onClick={() => handleCopy(happLink, 'subscription')}
                                     >
-                                        <Icon id='copy' width='25px' height='25px' fill="#6ad9ff" />
+                                        <Icon id='copy' width='20px' height='20px' fill={Theme.colors.accentColor} />
                                     </StyledButton>
 
                                     {copiedBlock === 'subscription' && <CopyMessage>ссылка скопирована!</CopyMessage>}
@@ -380,7 +381,7 @@ export function InstallPage({ subscriptionUrl }: InstallPageProps) {
 
                         <StyledInstallWrapper>
                             <StyledIconWrapper>
-                                <Icon id='location' width='25px' height='25px' fill="#ffffff" />
+                                <Icon id='location' width='20px' height='20px' fill="#ffffff" />
                             </StyledIconWrapper>
 
                             <StyledTitleWrapper>
@@ -411,35 +412,34 @@ const StyledPsevdo = styled.div`
 
 
 const StyledLink = styled.a`
-    box-shadow: inset 0 0 5px 1px #6ad9ff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid #63d7fd;
+  border: 1px solid ${Theme.colors.accentColor};
   border-radius: 10px;
   background-color: #6adaff0c;
-  color: #6ad9ff;
+  color: ${Theme.colors.mainFontColor};
   width: 100%;
-  height: 40px;
+  height: 45px;
   text-transform: uppercase;
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   font-style: normal;
   font-size: 14px;
   text-decoration: none;
-   &:active {
+   
+  &:active {
     transform: translateY(2px);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 `;
 
 const DeviceSelect = styled.select`
   cursor: pointer;
-  border: 1px solid #6ad9ff;
+  border: 1px solid ${Theme.colors.accentColor};
   border-radius: 10px;
   background-color: #6adaff0c;
-  color: #6ad9ff;
+  color: ${Theme.colors.accentColor};
   width: 100px;
   font-family: "Manrope", sans-serif;
   font-weight: 800;
@@ -449,7 +449,7 @@ const DeviceSelect = styled.select`
   option {
     background-color: transparent;
     font-weight: 800;
-    color: #6ad9ff;
+    color: ${Theme.colors.accentColor};
   }
 `;
 const StyledDeviceWrapper = styled.div`
@@ -471,7 +471,7 @@ margin: 5px 0px 10px 0px;
 font-size: 12px;
 font-weight: 700;
 text-transform: none;
-color: #8b949e;
+color: ${Theme.colors.secondaryFontColor};
 `
 const StyledDeviceIconWrapper = styled.div`
 display: flex;
@@ -483,10 +483,9 @@ display: flex;
 align-items: center;
 justify-content: center;
 border-radius: 50%;
-background-color: #21a3ceff;
 flex-shrink: 0;
-width: 30px;
-height: 30px;
+width: 20px;
+height: 20px;
 `
 
 
@@ -496,7 +495,7 @@ const StyledSkroll = styled.div`
   overflow-x: auto;
   white-space: nowrap;
   background-color: #6adaff0c;
-  color: #6ad9ff;
+  color: ${Theme.colors.accentColor};
   width: 100%;
   max-width: 220px;
   height: 40px;
@@ -517,7 +516,7 @@ const StyledLinkScroll = styled.p`
   display: inline-block;
   flex-shrink: 0;
   padding: 0 10px;
-  color: #6ad9ff;
+  color: ${Theme.colors.accentColor};
   white-space: nowrap;
   margin: 0;
 `
@@ -535,7 +534,7 @@ height: 40px;
 display: flex;
 align-items: center;
 justify-content: center;
-border: 2px solid #63d7fd;
+border: 2px solid ${Theme.colors.accentColor};
 `
 const CopyMessage = styled.div`
 display: flex;

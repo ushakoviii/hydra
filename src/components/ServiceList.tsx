@@ -10,6 +10,7 @@ import { LoadSpinner } from './LoadSpinner';
 import { InstallModalButton } from './InstallModalButton';
 import { TariffModalButton } from './TariffModalButton';
 import { TermsModalButton } from './TermsModalButton';
+import { Theme } from './Theme';
 
 export const ServiceList: React.FC = () => {
   const { isAuthenticated, sessionId } = useSession();
@@ -20,6 +21,7 @@ export const ServiceList: React.FC = () => {
   const [loginId, setLoginId] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
   const [subscriptionUrl, setSubscriptionUrl] = useState<string | null>(null);
+  const [happLink, setHappLink] = useState<string | null>(null);
   const [next, setNext] = useState<number | null>(null);
   const [orderCosts, setOrderCosts] = useState<{ service_id: number; cost: number }[]>([]);
   const [reloadFlag, setReloadFlag] = useState<boolean>(false);
@@ -77,6 +79,7 @@ export const ServiceList: React.FC = () => {
         if (storageRes.ok) {
           const storageData = await storageRes.json();
           setSubscriptionUrl(storageData.subscriptionUrl ?? null);
+          setHappLink(storageData.happ?.cryptoLink ?? null);
         }
       }
 
@@ -135,7 +138,7 @@ export const ServiceList: React.FC = () => {
 
   return (
     <StyledMain>
-      <BackgroundVideo />
+      {/* <BackgroundVideo /> */}
       <StyledLogoWrapper>
 
         <Logo />
@@ -195,11 +198,12 @@ export const ServiceList: React.FC = () => {
         {itemsCount !== 0 && (
           <>
             {bottomButtonText && (
-              <StyledButton onClick={() => console.log('Кнопка внизу')}>
+              <StyledButton bgc={Theme.colors.accentColor}
+                onClick={() => console.log('Кнопка внизу')}>
                 {bottomButtonText}
               </StyledButton>
             )}
-            <InstallModalButton subscriptionUrl={subscriptionUrl} />
+            <InstallModalButton happLink={happLink} />
             <StyledButtonWrapper>
               <TariffModalButton />
               <SupportButton />
@@ -246,7 +250,7 @@ const StyledMain = styled.main`
 
 const StyledMenuWrapper = styled.div`
   width: 330px;
-  background-color: #1c1c1eb7;
+  background-color: ${Theme.colors.secondaryBgColor};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,7 +270,8 @@ const StyledProfileWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 0px 0px 10px 0px;
-  border-bottom: 2px solid #747474ff;
+  border-bottom: 2px solid #36363ab7;
+  text-transform: uppercase;
 
   div {
     display: flex;
@@ -294,7 +299,7 @@ type StyledStatusPropsType = {
 };
 
 const StyledStatus = styled.div<StyledStatusPropsType>`
-
+  text-transform: none;
   margin-top: 1px;
   margin-bottom: 0px;
   font-weight: 800;
