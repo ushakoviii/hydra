@@ -46,7 +46,7 @@ export function InstallPage({ happLink }: InstallPageProps) {
             setTimeout(() => setCopiedBlock(null), 2000);
         });
     };
-    let cleanHappLink = happLink.replace("happ://", "")
+    let cleanHappLink = happLink?.replace("happ://", "") ?? "";
     return (
         <div>
             <StyledTitle>Установка и настройка</StyledTitle>
