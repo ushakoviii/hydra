@@ -6,7 +6,7 @@ export const Auth: React.FC = () => {
   const { isAuthenticated, setSession, setLoading } = useSession();
   const [error, setError] = useState<string | null>(null);
 
-  const loginData = { login: 'test@test', password: 'test' };
+  const loginData = { login: 'ushakov.ii@yandex.ru', password: 'ushakov.ii' };
   const doLogin = async (): Promise<boolean> => {
     try {
       const response = await fetch('https://shmclient.hydra-service.online/shm/user/auth.cgi', {
