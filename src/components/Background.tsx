@@ -26,15 +26,32 @@ export function Background() {
 const StyledLogoWrapper = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
   background: radial-gradient(ellipse at center, #353845ff 0%, #111216 80%);
+  
 `;
+// ::before {
+//     content: "";
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     width: 100%;
+//     height: 100%;
+//     transform: translate(-50%, -50%);
+//     background-image: url(${texture2});
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     z-index: 3;
+//     opacity: 0.3;
+//   }
 const ShowAnimatedLogo = styled.div`
-  width: 70px;
-  height: 70px;
+width: 70px;
+height: 70px;
   position: relative;
   opacity: 0;
   animation: fadeInUp 3s ease-out 2s forwards;
@@ -84,7 +101,7 @@ const StyledNameSvg = styled.svg`
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
-  animation: fadeIn 2s ease-out 4s forwards;
+  animation: fadeIn 3s ease-out 4s forwards;
 
   @keyframes fadeIn {
     from {

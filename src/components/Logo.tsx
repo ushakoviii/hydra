@@ -32,6 +32,7 @@ const pulse = keyframes`
 `;
 
 const PulsingLogo = styled.svg`
+z-index: 3;
   animation: ${pulse} 7s ease-in-out infinite;
   position: absolute;
   top: 50%;

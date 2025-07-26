@@ -5,7 +5,6 @@ import { Logo } from "./Logo";
 export function LoadSpinner() {
   return (
     <LoaderWrapper>
-      <Logo id="logo" width="18" height="18" fill={Theme.colors.accentColor}/>
       <Spinner />
     </LoaderWrapper>
   );

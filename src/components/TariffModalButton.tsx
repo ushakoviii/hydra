@@ -41,7 +41,7 @@ export const TariffModalButton: React.FC = () => {
               <StyledTitle>Тарифы</StyledTitle>
               <StyledTariffWrapper>
                 <StyledPriceWrapper>
-                  <StyledPrice>190 руб.</StyledPrice>
+                  <StyledPrice>199 руб.</StyledPrice>
                 </StyledPriceWrapper>
 
                 <StyledTitleSection textAlign="center" margin="15px 0px 15px 0px">1 Месяц</StyledTitleSection>
@@ -51,7 +51,7 @@ export const TariffModalButton: React.FC = () => {
                 </StyledTariffItemWrapper>
                 <StyledTariffItemWrapper>
                   <Icon id='download' width='20px' height='20px' fill="#ffffff" />
-                  <StyledText>Неограниченный трафик</StyledText>
+                  <StyledText>1 ТБ трафика </StyledText>
                 </StyledTariffItemWrapper>
                 <StyledTariffItemWrapper>
                   <Icon id='devices' width='20px' height='20px' fill="#ffffff" />

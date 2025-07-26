@@ -246,7 +246,7 @@ export const ServiceList: React.FC = () => {
 const StyledMain = styled.main`
   width: 100vw;
   height: 100vh;
-  padding: 0px 15px 15px 15px;
+  padding: 0px 0px 15px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
