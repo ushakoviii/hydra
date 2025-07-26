@@ -17,6 +17,7 @@ type InstallPageProps = {
 
 
 
+
 export function InstallPage({ happLink }: InstallPageProps) {
     const { sessionId } = useSession();
     const [error, setError] = useState<string | null>(null);
@@ -45,6 +46,7 @@ export function InstallPage({ happLink }: InstallPageProps) {
             setTimeout(() => setCopiedBlock(null), 2000);
         });
     };
+    let cleanHappLink = happLink.replace("happ://", "")
     return (
         <div>
             <StyledTitle>Установка и настройка</StyledTitle>
@@ -95,7 +97,7 @@ export function InstallPage({ happLink }: InstallPageProps) {
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
+                                <StyledLink href={`happ://add/${cleanHappLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
@@ -182,7 +184,7 @@ export function InstallPage({ happLink }: InstallPageProps) {
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
+                                <StyledLink href={`happ://add/${cleanHappLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
@@ -258,7 +260,7 @@ export function InstallPage({ happLink }: InstallPageProps) {
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
+                                <StyledLink href={`happ://add/${cleanHappLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
@@ -346,7 +348,7 @@ export function InstallPage({ happLink }: InstallPageProps) {
                                 <StyledInstallText>
                                     Нажмите кнопку ниже — приложение откроется, и подписка добавится автоматически.
                                 </StyledInstallText>
-                                <StyledLink href={`happ://add/${happLink}`} target="_blank">
+                                <StyledLink href={`happ://add/${cleanHappLink}`} target="_blank">
                                     Добавить подписку
                                 </StyledLink>
                             </StyledTitleWrapper>
