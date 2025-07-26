@@ -9,7 +9,8 @@ import { Theme } from './Theme';
 type PayButtonProps = {
     text?: string | null;
     link?: string | null;
-    cost?: string | null;
+    cost?: number | null;
+
 };
 export const PayButton: React.FC<PayButtonProps> = ({ text, link, cost }) => {
     const [showModal, setShowModal] = useState(false);
@@ -28,7 +29,6 @@ export const PayButton: React.FC<PayButtonProps> = ({ text, link, cost }) => {
                 onClick={() => setShowModal(true)} bgc={Theme.colors.accentColor}>
                 {/* <Icon id='pay' width='20px' height='20px' fill="#ffffff" /> */}
                 {text}
-                <StyledCost>{cost} руб.</StyledCost>
             </StyledButton>
 
             {showModal && (
@@ -46,12 +46,21 @@ export const PayButton: React.FC<PayButtonProps> = ({ text, link, cost }) => {
                         </StyledButton>
                     </StyledButtonWrapper>
                     <StyledModalWrapper className={isClosing ? 'closing' : ''}>
-                        <StyledLinkWrapper>
-                            <StyledTitle>Подтверждение оплаты</StyledTitle>
-                            <StyledText>текст</StyledText>
-                            <StyledLink href={`${link}${cost}`}>Оплатить <StyledCost>{cost} руб.</StyledCost></StyledLink>
-                        </StyledLinkWrapper>
-
+                        {cost === 0 ? (
+                            // 👉 Контент, если оплатить не нужно
+                            <StyledLinkWrapper>
+                                <StyledTitle>Подписка активна</StyledTitle>
+                                <StyledTitleSection tansform="none" margin='10px 0px' textAlign="center">У вас достаточно средств на балансе. Подписка продлится автоматически.</StyledTitleSection>
+                                
+                            </StyledLinkWrapper>
+                        ) : (
+                            // 👉 Контент, если нужно оплатить
+                            <StyledLinkWrapper>
+                                <StyledTitle>Подтверждение оплаты</StyledTitle>
+                                <StyledTitleSection tansform="none" margin='10px 0px' textAlign="center">Нажмите ниже, чтобы оплатить подписку</StyledTitleSection>
+                                <StyledLink href={`${link}${cost}`}>Оплатить <StyledCost>{cost} руб.</StyledCost></StyledLink>
+                            </StyledLinkWrapper>
+                        )}
                     </StyledModalWrapper>
 
                 </ModalOverlay>
@@ -218,5 +227,4 @@ right: 10px;
 transform: translateY(-50%);
 `
 const StyledLinkWrapper = styled.div`
-margin: 15px 0px;
 `

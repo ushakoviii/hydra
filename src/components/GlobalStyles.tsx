@@ -12,9 +12,8 @@ box-sizing: border-box;
 
 body {
 max-width: 100wv;
-
-color: ${Theme.colors.mainFontColor};
 background-color: ${Theme.colors.mainBgColor};
+color: ${Theme.colors.mainFontColor};
 font-family: "Manrope", sans-serif;
 font-optical-sizing: auto;
 font-weight: 400;
@@ -23,3 +22,4 @@ overflow: hidden;
 font-size: 12px;
 }
 `
+// background-color: ${Theme.colors.mainBgColor};

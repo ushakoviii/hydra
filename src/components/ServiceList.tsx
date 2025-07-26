@@ -3,13 +3,13 @@ import { useSession } from './SessionContext';
 import { OrderButton } from './OrderButton';
 import { SupportButton } from './SupportButton';
 import { styled } from 'styled-components';
-import { Logo } from './Logo';
 import { LoadSpinner } from './LoadSpinner';
 import { InstallModalButton } from './InstallModalButton';
 import { TariffModalButton } from './TariffModalButton';
 import { TermsModalButton } from './TermsModalButton';
 import { Theme } from './Theme';
 import { PayButton } from './PayButton';
+import { Background } from './Background';
 
 export const ServiceList: React.FC = () => {
   const { isAuthenticated, sessionId } = useSession();
@@ -118,16 +118,16 @@ export const ServiceList: React.FC = () => {
     fetchAllData();
   }, [isAuthenticated, sessionId, reloadFlag]);
 
-  useEffect(() => {
-    if (!isAuthenticated || !sessionId) return;
-    const interval = setInterval(() => {
-      fetchAllData();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isAuthenticated, sessionId]);
+  // useEffect(() => {
+  //   if (!isAuthenticated || !sessionId) return;
+  //   const interval = setInterval(() => {
+  //     fetchAllData();
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [isAuthenticated, sessionId]);
 
   if (initialLoading) return <LoadSpinner />;
-  if (error) return <div className="text-red-600">Ошибка: {error}</div>;
+  if (error) return <div>Ошибка: {error}</div>;
 
   const handleOrderSuccess = () => {
     setReloadFlag(prev => !prev);
@@ -136,34 +136,40 @@ export const ServiceList: React.FC = () => {
   const firstService = services.length > 0 ? services[0] : null;
   const firstServiceStatus = firstService?.status?.toUpperCase();
 
-  let payButtonText = '';
-  if (firstServiceStatus === 'BLOCK') {
-    payButtonText = 'Продлить';
-  } else {
-    payButtonText = 'Пополнить';
-  }
 
-  let tariffCost = '0';
-  if (next === 12) {
-    tariffCost = '249';
-  } else if (next === 14) {
-    tariffCost = '599';
-  }
 
-  let tariffLabel = 'Неизвестный тариф';
+  let tariffLabel = '';
   if (next === 12) {
     tariffLabel = '1 месяц';
   } else if (next === 14) {
     tariffLabel = '3 месяца';
   }
 
+  let tariffCost = 0;
+  if (next === 12) {
+    tariffCost = 199;
+  } else if (next === 14) {
+    tariffCost = 499;
+  }
+
+  let payCost = 0;
+
+  if (balance !== null) {
+    payCost = Math.max(tariffCost - balance, 0);
+  } else {
+    payCost = tariffCost;
+  }
+
+  let payButtonText = '';
+  if (payCost === 0) {
+    payButtonText = 'Подписка продлится автоматически';
+  } else {
+    payButtonText = `Продлить подписку за ${payCost}₽`;
+  }
+
   return (
     <StyledMain>
-      {/* <BackgroundVideo /> */}
-      <StyledLogoWrapper>
-
-        <Logo />
-      </StyledLogoWrapper>
+      <Background />
 
       <StyledMenuWrapper>
         {itemsCount === 0 && (
@@ -215,20 +221,20 @@ export const ServiceList: React.FC = () => {
 
         {itemsCount !== 0 && (
           <>
-            <PayButton text={payButtonText} link={PayLink} cost={tariffCost} />
+            <PayButton text={payButtonText} link={PayLink} cost={payCost} />
             <InstallModalButton happLink={happLink} />
             <StyledButtonWrapper>
               <TariffModalButton />
               <SupportButton />
             </StyledButtonWrapper>
             <TermsModalButton />
+
           </>
         )}
       </StyledMenuWrapper>
     </StyledMain>
   );
 };
-
 
 
 
@@ -275,6 +281,7 @@ const StyledLogoWrapper = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
+
 `;
 
 const StyledProfileWrapper = styled.div`

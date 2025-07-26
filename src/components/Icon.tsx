@@ -3,8 +3,8 @@ import SvgSprite from './SvgSprite.svg'
 
 type IconPropsType = {
   id: string,
-  width: string,
-  height: string,
+  width?: string,
+  height?: string,
   fill?: string;
 }
 

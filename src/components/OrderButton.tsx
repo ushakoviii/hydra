@@ -32,13 +32,19 @@ export const OrderButton: React.FC<OrderButtonProps> = ({ onOrderSuccess }) => {
       if (!response.ok) throw new Error(`Ошибка заказа: ${response.status}`);
 
       setSuccess(true);
-      onOrderSuccess(); // можно обновить родителя или просто дождаться автообновления
+
+      // ✅ Повторный запрос через 3 секунды
+      setTimeout(() => {
+        onOrderSuccess();
+      }, 3000);
+
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <StyledOrderButtonWrapper>
