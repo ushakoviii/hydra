@@ -129,8 +129,8 @@ const blurFadeOut = keyframes`
 const StyledModalWrapper = styled.div`
         background-color: #1c1c1eb7;
         position: relative;
-        max-height: 80%;
-        height: 100%;
+        max-height: 90%;
+        min-height: 360px;
         overflow-y: auto;
         padding: 15px 15px;
         width: 100%;

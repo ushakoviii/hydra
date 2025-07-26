@@ -205,7 +205,7 @@ const StyledModalWrapper = styled.div`
         background-color: #1c1c1eb7;
         backdrop-filter: blur(10px);
         position: relative;
-        max-height: 80%;
+        max-height: 90%;
         min-height: 360px;
         overflow-y: auto;
         padding: 15px 15px;
